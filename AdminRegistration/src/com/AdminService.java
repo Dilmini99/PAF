@@ -52,4 +52,20 @@ public class AdminService {
 	 String output = registerObj.updateAdmin(cID, cName, cAddress, cEmail, cDate, pno);
 	return output;
 	} 
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteCustomer(String adminData)
+	{
+	//Convert the input string to an XML document
+	 Document doc = Jsoup.parse(adminData, "", Parser.xmlParser());
+
+	//Read the value from the element <ID>
+	 String cID = doc.select("cID").text();
+	 String output = registerObj.deleteAdmin(cID);
+	return output;
+	}
+}
+	
 	
