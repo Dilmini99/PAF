@@ -34,4 +34,22 @@ public class AdminService {
 	 String output = registerObj.insertAdmin(cName, cAddress, cEmail, cDate, pno);
 	return output;
 	}
+	@PUT
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateAdmin(String adminData)
+	{
+	//Convert the input string to a JSON object
+	 JsonObject regObject = new JsonParser().parse(adminData).getAsJsonObject();
+	//Read the values from the JSON object
+	 String cID = regObject.get("cID").getAsString();
+	 String cName = regObject.get("cName").getAsString();
+	 String cAddress = regObject.get("cAddress").getAsString();
+	 String cEmail = regObject.get("cEmail").getAsString();
+	 String cDate = regObject.get("cDate").getAsString();
+	 String pno = regObject.get("pno").getAsString();
+	 String output = registerObj.updateAdmin(cID, cName, cAddress, cEmail, cDate, pno);
+	return output;
+	} 
 	
